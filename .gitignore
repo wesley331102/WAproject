@@ -5,3 +5,6 @@
 
 # cache
 /backend/__pycache__
+
+# env
+/backend/.env
