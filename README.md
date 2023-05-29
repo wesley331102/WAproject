@@ -8,7 +8,8 @@ Next, create .env in the backend folder
 
 ``
 EMAIL_ADDRESS = 'your email'
-
+``
+``
 EMAIL_PASSWORD = 'your app password'
 ``
 
