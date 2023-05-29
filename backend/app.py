@@ -92,6 +92,7 @@ def post():
     post_data = request.get_json()
     username = post_data.get("username")
     email = post_data.get("email")
+    animalname = post_data.get("animalname")
     path = post_data.get("path")
     animal = post_data.get("animal")
     breed = post_data.get("breed")
@@ -102,6 +103,7 @@ def post():
         db.Post.insert_one({
             "username": username, 
             "email": email, 
+            "animalname": animalname, 
             "path": path, 
             "animal": animal, 
             "breed": breed, 
@@ -135,6 +137,7 @@ def search():
             result.append({
                 "pid": str(response["_id"]), 
                 "username": response["username"],
+                "animalname": response["animalname"],
                 "path": response["path"], 
                 "animal": response["animal"], 
                 "breed": response["breed"], 
@@ -147,7 +150,6 @@ def search():
         return jsonify({"result": result})
     return jsonify({"result": result})
 
-# TODO
 @app.route("/accept", methods=["POST"])
 def accept():
     post_data = request.get_json()
@@ -183,6 +185,7 @@ def my_post():
             result.append({
                 "pid": str(response["_id"]), 
                 "username": response["username"],
+                "animalname": response["animalname"], 
                 "path": response["path"], 
                 "animal": response["animal"], 
                 "breed": response["breed"], 
