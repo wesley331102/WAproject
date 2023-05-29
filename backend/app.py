@@ -13,7 +13,7 @@ from email.mime.text import MIMEText
 load_dotenv()
 EMAIL_ADDRESS = os.getenv('EMAIL_ADDRESS')
 EMAIL_PASSWORD = os.getenv('EMAIL_PASSWORD')
-SMTP_SERVER = "localhost"
+SMTP_SERVER = "smtp.gmail.com"
 SMTP_PORT = 465
 DB_URI = "mongodb+srv://WebAppGroup12:VPFcc2XiRYgKZeJa@webapp.0lxbxxp.mongodb.net/?retryWrites=true&w=majority"
 client = MongoClient(DB_URI, server_api=ServerApi('1'))
@@ -164,8 +164,8 @@ def accept():
         msg = MIMEText(message)
         msg['Subject'] = "Sent from WA project"
         msg['From'] = EMAIL_ADDRESS
-        msg['To'] = ', '.join(["Sent from WA project"])
-        with smtplib.SMTP_SSL('smtp.gmail.com', SMTP_PORT) as smtp_server:
+        msg['To'] = response["email"]
+        with smtplib.SMTP_SSL(SMTP_SERVER, SMTP_PORT) as smtp_server:
             smtp_server.login(EMAIL_ADDRESS, EMAIL_PASSWORD)
             smtp_server.sendmail(EMAIL_ADDRESS, response["email"], msg.as_string())
 
